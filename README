@@ -11,11 +11,11 @@ SYNOPSIS
 
 DESCRIPTION
     This module implements a sorting algorithm I saw in BIT 28 (1988) by
-    István Beck and Stein Krogdahl. This implmentation is mainly intended to
-    try out the Inline module by Brian Ingerson. The algorithim is a
+    István Beck and Stein Krogdahl. This implementation is mainly intended to
+    try out the Inline module by Brian Ingerson. The algorithm is a
     combination of *Straight Insertion Sort* and *Selection Sort*. While
     *Insertion Sort* and *Selection Sort* both are of complexity O(n**2),
-    *Select and Insert Sort* should have complexitiy O(n**1.5).
+    *Select and Insert Sort* should have complexity O(n**1.5).
 
     This module defines the functions "Sort" and "Sort_inplace", which have
     signatures similar to the internal "sort" function. The difference is
@@ -30,7 +30,7 @@ DESCRIPTION
 
 BUGS
     This is the first serious (i.e. not "Hello World") C-extension I've
-    done, so I suspect I've screwed around with the refcounts of the list
+    done, so I suspect I've screwed around with the ref counts of the list
     entries. Until I've confirmed that there are no memory leaks, I caution
     people not to use this piece of code in any production system.
 
@@ -38,7 +38,7 @@ BUGS
     address below.
 
 SEE ALSO
-    the Inline manpage, the Inline::C manpage, and *A Select And Insert
+    the Inline man page, the Inline::C man page, and *A Select And Insert
     Sorting Algorithm* by István Beck and Stein Krogdahl in *BIT 28 (1988),
     726-735*.
 

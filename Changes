@@ -1,7 +1,12 @@
 Revision history for Perl extension Algorithm::SISort.
 
-0.11  Sun Feb 19 12:58 GMT 2001
-	- added timezones to the Changelog
+0.12  not done yet (and therefore not released)
+	- ran the documentation files through a spell checker
+	- updated package to use Inline 0.40's Inline::MakeMaker
+	  The package now requires Inline v 0.40 to install
+
+0.11  Mon Feb 19 12:58 GMT 2001
+	- added time zones to the Changelog
 	- changed Sort() to only copy the input array once.
 	- some minimal error checking added on the parameters to
 	  _sort().

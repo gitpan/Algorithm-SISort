@@ -7,7 +7,6 @@ use Test;
 
 BEGIN { plan tests => 4 }
 
-use Inline 'SITE_INSTALL'; # Prepare to install C-stubs in site-dir
 use Algorithm::SISort;
 
 our $unsorted='19 16 7 15 4 6 18 12 0 13 1 3 8 9 5 11 14 10 17 2';
@@ -24,12 +23,12 @@ ok(join(' ',@a) eq $unsorted && join(' ',@b) eq $sorted);
 our $count=Algorithm::SISort::Sort_inplace { $_[0] <=> $_[1] } @a;
 ok(join(' ',@a) eq $sorted && $count == 98);
 
-#Reverse an already sorted list...
+#Reverse sort an already sorted (ascending) list...
 $count=Algorithm::SISort::Sort_inplace { $_[1] <=> $_[0] } @a;
 ok(join(' ',@a) eq $reverse && $count == 102);
 
 @a=split ' ', $unsorted;
-#Reverse an unsorted list...
+#Reverse sort an unsorted list...
 $count=Algorithm::SISort::Sort_inplace { $_[1] <=> $_[0] } @a;
 ok(join(' ',@a) eq $reverse && $count == 101);
 

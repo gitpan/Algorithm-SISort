@@ -3,7 +3,7 @@ package Algorithm::SISort;
 require 5.005_62;
 use strict;
 use warnings;
-use Inline C => 'DATA';
+use Inline C => 'DATA', NAME => 'Algorithm::SISort', VERSION => '0.12';
 
 require Exporter;
 
@@ -18,7 +18,7 @@ our @EXPORT_OK = ( @{ $EXPORT_TAGS{'all'} } );
 
 our @EXPORT = qw( );
 
-our $VERSION = '0.11';
+our $VERSION = '0.12';
 
 sub Sort(&@) {
 	my $callback=shift;
@@ -51,11 +51,11 @@ Algorithm::SISort - Implementation of Select And Insert sorting algorithm in C
 =head1 DESCRIPTION
 
 This module implements a sorting algorithm I saw in BIT 28 (1988) by István
-Beck and Stein Krogdahl. This implmentation is mainly intended to try out the
-Inline module by Brian Ingerson. The algorithim is a combination of I<Straight
+Beck and Stein Krogdahl. This implementation is mainly intended to try out the
+Inline module by Brian Ingerson. The algorithm is a combination of I<Straight
 Insertion Sort> and I<Selection Sort>. While I<Insertion Sort> and I<Selection
 Sort> both are of complexity O(n**2), I<Select and Insert Sort> should have
-complexitiy O(n**1.5).
+complexity O(n**1.5).
 
 This module defines the functions C<Sort> and C<Sort_inplace>, which have
 signatures similar to the internal C<sort> function. The difference is that a
@@ -71,7 +71,7 @@ before calling the internal sort routine.)
 =head1 BUGS
 
 This is the first serious (i.e. not "Hello World") C-extension I've done, so
-I suspect I've screwed around with the refcounts of the list entries. Until I've
+I suspect I've screwed around with the ref counts of the list entries. Until I've
 confirmed that there are no memory leaks, I caution people not to use this
 piece of code in any production system. 
 
