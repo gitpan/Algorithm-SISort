@@ -1,9 +1,11 @@
 # Before `make install' is performed this script should be runnable with
 # `make test'. After `make install' it should work as `perl test.pl'
+
+# TODO: Make better test-cases.
 use strict;
 use Test;
 
-BEGIN { plan tests => 3 }
+BEGIN { plan tests => 4 }
 
 use Inline 'SITE_INSTALL'; # Prepare to install C-stubs in site-dir
 use Algorithm::SISort;
@@ -25,4 +27,9 @@ ok(join(' ',@a) eq $sorted && $count == 98);
 #Reverse an already sorted list...
 $count=Algorithm::SISort::Sort_inplace { $_[1] <=> $_[0] } @a;
 ok(join(' ',@a) eq $reverse && $count == 102);
+
+@a=split ' ', $unsorted;
+#Reverse an unsorted list...
+$count=Algorithm::SISort::Sort_inplace { $_[1] <=> $_[0] } @a;
+ok(join(' ',@a) eq $reverse && $count == 101);
 

@@ -18,13 +18,12 @@ our @EXPORT_OK = ( @{ $EXPORT_TAGS{'all'} } );
 
 our @EXPORT = qw( );
 
-our $VERSION = '0.10';
+our $VERSION = '0.11';
 
 sub Sort(&@) {
 	my $callback=shift;
-	my @array_copy=@_;
-	_sort($callback, \@array_copy);
-	return @array_copy;
+	_sort($callback, \@_);
+	return @_;
 }
 
 sub Sort_inplace(&\@) {
@@ -74,7 +73,7 @@ before calling the internal sort routine.)
 This is the first serious (i.e. not "Hello World") C-extension I've done, so
 I suspect I've screwed around with the refcounts of the list entries. Until I've
 confirmed that there are no memory leaks, I caution people not to use this
-peace of code in any production system. 
+piece of code in any production system. 
 
 Any bug-reports, comments and patches are very welcome at my email address
 below.
@@ -134,22 +133,24 @@ static int compare( SV* callback,  SV* a, SV* b) {
 
 int _sort (SV* callback, SV* arrayref) {
 	int n; /* last element of array */
-	int i, j,  minj, step, ncompares;
-	SV *min, **minp, **A_i, **A_j, **ptr, **zero;
+	int i, j,  step, ncompares;
+	SV *min, **minp, **A_i, **A_j, **ptr;
 	AV* A;
 	
+	if (! SvROK(arrayref))
+		croak("arrayref is not a reference");
+	if (! SvROK(callback))
+		croak("callback is not a reference");
+
 	ncompares=0;
 	A=(AV*)SvRV(arrayref);
-	/* Add a temporary spare room at the front: */
-	av_unshift(A,1);av_store(A,0,sv_newmortal()); 
 	
 	n=av_len(A);
-	zero=av_fetch(A,0,0);
-	for(i=1;i<=n;i++) {
+
+	for(i=0;i<=n;i++) {
 		A_i=av_fetch(A,i,0);
 		min  = *A_i;
 		minp = A_i;
-		minj = i;
 		step = 1;
 		j	 = i+step;
 		
@@ -160,7 +161,6 @@ int _sort (SV* callback, SV* arrayref) {
 			if( compare(callback, *A_j, min ) < 0 )  {
 				min=*A_j;
 				minp=A_j;
-				minj=j;
 			}
 			step++;
 			j+=step;
@@ -169,11 +169,10 @@ int _sort (SV* callback, SV* arrayref) {
 	
 		/* Start insertion: */
 		*minp=*A_i;
-		*zero=min; 
 		
 		j = i-1;
 		A_j=av_fetch(A,j,0);
-		while ( compare(callback, *A_j, min ) > 0 ) {
+		while ( j>-1 && compare(callback, *A_j, min ) > 0 ) {
 			ncompares++;
 			ptr=av_fetch(A,j+1,0);
 			*ptr=*A_j;
@@ -185,8 +184,7 @@ int _sort (SV* callback, SV* arrayref) {
 		ptr=av_fetch(A,j+1,0);
 		*ptr=min;
 	}
-	/* Remove the temporary spare room at the front: */
-	av_shift(A);
+
 	return ncompares;
 
 }
