@@ -1,0 +1,10 @@
+Revision history for Perl extension Algorithm::SISort.
+
+0.10  Sun Feb 18 23:31 2001
+	- initial packaging and release
+	- renamed to Algorithm::SISort
+
+0.01  Sun Feb 18 13:28 2001
+	- original version; created by h2xs 1.20 with options
+		-AXn Sort::SiSort
+

@@ -1,0 +1,56 @@
+NAME
+    Algorithm::SISort - Implementation of Select And Insert sorting
+    algorithm in C
+
+SYNOPSIS
+      use Algorithm::SISort qw(Sort Sort_inplace);
+  
+      @sorted_list = Sort {$_[0] <=> $_[1]} @unsorted_list;
+      # ... or ...
+      Sort_inplace {$_[0] <=> $_[1]} @unsorted_list;
+
+DESCRIPTION
+    This module implements a sorting algorithm I saw in BIT 28 (1988) by
+    István Beck and Stein Krogdahl. This implmentation is mainly intended to
+    try out the Inline module by Brian Ingerson. The algorithim is a
+    combination of *Straight Insertion Sort* and *Selection Sort*. While
+    *Insertion Sort* and *Selection Sort* both are of complexity O(n**2),
+    *Select and Insert Sort* should have complexitiy O(n**1.5).
+
+    This module defines the functions "Sort" and "Sort_inplace", which have
+    signatures similar to the internal "sort" function. The difference is
+    that a codref defining a comparison is always required and that the two
+    values to compare are always passed in "@_" and not as "$a" and "$b".
+    (Although I might change that later.)
+
+    "Sort" returns a sorted copy if the array, but "Sort_inplace" sorts the
+    array in place (as the name suggests) and returns the number of
+    comparisons done. (Note that the sorting is always done in place, "Sort"
+    just copies the array before calling the internal sort routine.)
+
+BUGS
+    This is the first serious (i.e. not "Hello World") C-extension I've
+    done, so I suspect I've screwed around with the refcounts of the list
+    entries. Until I've confirmed that there are no memory leaks, I caution
+    people not to use this peace of code in any production system.
+
+    Any bug-reports, comments and patches are very welcome at my email
+    address below.
+
+SEE ALSO
+    the Inline manpage, the Inline::C manpage, and *A Select And Insert
+    Sorting Algorithm* by István Beck and Stein Krogdahl in *BIT 28 (1988),
+    726-735*.
+
+AUTHOR
+    Hrafnkell F. Hlodversson, keli@shebang.dk
+
+COPYRIGHT
+    Copyright 2001, Hrafnkell F Hlodversson
+
+    All Rights Reserved. This module is free software. It may be used,
+    redistributed and/or modified under the terms of the Perl Artistic
+    License.
+
+    See http://www.perl.com/perl/misc/Artistic.html
+
