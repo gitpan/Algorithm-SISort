@@ -1,13 +1,6 @@
 NAME
     Algorithm::SISort - Select And Insert sorting algorithm
 
-SYNOPSIS
-      use Algorithm::SISort qw(Sort Sort_inplace);
-  
-      @sorted_list = Sort {$_[0] <=> $_[1]} @unsorted_list;
-      # ... or ...
-      $number_of_comparisons = Sort_inplace {$_[0] <=> $_[1]} @unsorted_list;
-
 DESCRIPTION
     This module implements a sorting algorithm I saw in BIT 28 (1988) by
     István Beck and Stein Krogdahl. This implementation is mainly intended to
@@ -16,30 +9,30 @@ DESCRIPTION
     *Insertion Sort* and *Selection Sort* both are of complexity O(n**2),
     *Select and Insert Sort* should have complexity O(n**1.5).
 
-    This module defines the functions "Sort" and "Sort_inplace", which have
-    signatures similar to the internal "sort" function. The difference is
-    that a codref defining a comparison is always required and that the two
-    values to compare are always passed in "@_" and not as "$a" and "$b".
-    (Although I might change that later.)
+    For more usage information, read the Algorithm::SISort pod
+    documentation.
 
-    "Sort" returns a sorted copy if the array, but "Sort_inplace" sorts the
-    array in place (as the name suggests) and returns the number of
-    comparisons done. (Note that the sorting is always done in place, "Sort"
-    just copies the array before calling the internal sort routine.)
+INSTALLING
+    Installing this module is as easy as unpacking the tar archive, cd'ing
+    to the extracted directory, and running:
+
+      perl Makefile.PL
+      make
+      make test
+      make install
+   
+   And if you are using the CPAN shell, it's is as easy as going:
+      perl -MCPAN -e shell
+      install Algorithm::SISort
+
+   Note, that this module requires Inline v. 0.40 or newer. The perl
+   Makefile.PL step will detect if any components are missing and issue a
+   warning, and CPAN should download install any dependencies automatically.
 
 BUGS
-    This is the first serious (i.e. not "Hello World") C-extension I've
-    done, so I suspect I've screwed around with the ref counts of the list
-    entries. Until I've confirmed that there are no memory leaks, I caution
-    people not to use this piece of code in any production system.
-
-    Any bug-reports, comments and patches are very welcome at my email
-    address below.
-
-SEE ALSO
-    the Inline man page, the Inline::C man page, and *A Select And Insert
-    Sorting Algorithm* by István Beck and Stein Krogdahl in *BIT 28 (1988),
-    726-735*.
+   Bug-reports are very welcome on the CPAN Request Tracker at: 
+                                                         
+     http://rt.cpan.org/NoAuth/Bugs.html?Dist=Algorithm-SISort
 
 AUTHOR
     Hrafnkell F. Hlodversson, keli@panmedia.dk

@@ -3,7 +3,7 @@ package Algorithm::SISort;
 require 5.005_62;
 use strict;
 use warnings;
-use Inline C => 'DATA', NAME => 'Algorithm::SISort', VERSION => '0.13';
+use Inline C => 'DATA', NAME => 'Algorithm::SISort', VERSION => '0.14';
 
 require Exporter;
 
@@ -18,7 +18,7 @@ our @EXPORT_OK = ( @{ $EXPORT_TAGS{'all'} } );
 
 our @EXPORT = qw( );
 
-our $VERSION = '0.13';
+our $VERSION = '0.14';
 
 sub Sort(&@) {
 	my $callback=shift;
@@ -70,13 +70,9 @@ before calling the internal sort routine.)
 
 =head1 BUGS
 
-This is the first serious (i.e. not "Hello World") C-extension I've done, so
-I suspect I've screwed around with the ref counts of the list entries. Until I've
-confirmed that there are no memory leaks, I caution people not to use this
-piece of code in any production system. 
+Bug-reports are very welcome on the CPAN Request Tracker at:
 
-Any bug-reports, comments and patches are very welcome at my email address
-below.
+    http://rt.cpan.org/NoAuth/Bugs.html?Dist=Algorithm-SISort
 
 =head1 SEE ALSO
 
