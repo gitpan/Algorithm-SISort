@@ -1,6 +1,12 @@
 Revision history for Perl extension Algorithm::SISort.
 
-0.12  not done yet (and therefore not released)
+0.13  Sat Mar 01 2:00 GMT 2003
+        - Moved SISort.pm into the root of the package to
+          work around a bug where Inline::MakeMaker does not specify
+          the path up to the .pm file to process in the Makefile.
+        - Updated my email address in the documentation
+
+0.12  Jun 01 2001
 	- ran the documentation files through a spell checker
 	- updated package to use Inline 0.40's Inline::MakeMaker
 	  The package now requires Inline v 0.40 to install

@@ -3,7 +3,7 @@ package Algorithm::SISort;
 require 5.005_62;
 use strict;
 use warnings;
-use Inline C => 'DATA', NAME => 'Algorithm::SISort', VERSION => '0.12';
+use Inline C => 'DATA', NAME => 'Algorithm::SISort', VERSION => '0.13';
 
 require Exporter;
 
@@ -18,7 +18,7 @@ our @EXPORT_OK = ( @{ $EXPORT_TAGS{'all'} } );
 
 our @EXPORT = qw( );
 
-our $VERSION = '0.12';
+our $VERSION = '0.13';
 
 sub Sort(&@) {
 	my $callback=shift;
@@ -38,7 +38,7 @@ __DATA__
 
 =head1 NAME
 
-Algorithm::SISort - Implementation of Select And Insert sorting algorithm in C
+Algorithm::SISort - Select And Insert sorting algorithm
 
 =head1 SYNOPSIS
 
@@ -46,7 +46,7 @@ Algorithm::SISort - Implementation of Select And Insert sorting algorithm in C
   
   @sorted_list = Sort {$_[0] <=> $_[1]} @unsorted_list;
   # ... or ...
-  Sort_inplace {$_[0] <=> $_[1]} @unsorted_list;
+  $number_of_comparisons = Sort_inplace {$_[0] <=> $_[1]} @unsorted_list;
 
 =head1 DESCRIPTION
 
@@ -85,7 +85,7 @@ Beck and Stein Krogdahl in I<BIT 28 (1988), 726-735>.
 
 =head1 AUTHOR
 
-Hrafnkell F. Hlodversson, keli@shebang.dk
+Hrafnkell F. Hlodversson, keli@panmedia.dk
 
 =head1 COPYRIGHT
 

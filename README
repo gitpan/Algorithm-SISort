@@ -1,13 +1,12 @@
 NAME
-    Algorithm::SISort - Implementation of Select And Insert sorting
-    algorithm in C
+    Algorithm::SISort - Select And Insert sorting algorithm
 
 SYNOPSIS
       use Algorithm::SISort qw(Sort Sort_inplace);
   
       @sorted_list = Sort {$_[0] <=> $_[1]} @unsorted_list;
       # ... or ...
-      Sort_inplace {$_[0] <=> $_[1]} @unsorted_list;
+      $number_of_comparisons = Sort_inplace {$_[0] <=> $_[1]} @unsorted_list;
 
 DESCRIPTION
     This module implements a sorting algorithm I saw in BIT 28 (1988) by
@@ -43,7 +42,7 @@ SEE ALSO
     726-735*.
 
 AUTHOR
-    Hrafnkell F. Hlodversson, keli@shebang.dk
+    Hrafnkell F. Hlodversson, keli@panmedia.dk
 
 COPYRIGHT
     Copyright 2001, Hrafnkell F Hlodversson

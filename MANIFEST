@@ -1,6 +1,6 @@
 Changes
 MANIFEST
 Makefile.PL
-lib/Algorithm/SISort.pm
-test.pl
 README
+SISort.pm
+test.pl
